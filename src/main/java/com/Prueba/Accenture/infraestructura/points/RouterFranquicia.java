@@ -19,6 +19,7 @@ public class RouterFranquicia {
         return RouterFunctions.route()
                 .POST("/api/franquicias", handler::crear)
                 .GET("/api/franquicias/{id}", handler::obtener)
+                .GET("/api/franquicias", handler::listar)
                 .PATCH("/api/franquicias/{id}/nombre", handler::actualizarNombre)
                 .onError(RecursoNoEncontradoException.class, (e, req) ->
                         ServerResponse.status(HttpStatus.NOT_FOUND).bodyValue(Map.of("error", e.getMessage())))

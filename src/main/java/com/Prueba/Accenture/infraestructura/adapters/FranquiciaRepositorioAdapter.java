@@ -4,6 +4,7 @@ import com.Prueba.Accenture.domain.interfaces.FranquiciaRepositorio;
 import com.Prueba.Accenture.domain.model.Franquicia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -23,4 +24,10 @@ public class FranquiciaRepositorioAdapter implements FranquiciaRepositorio {
         return mongo.findById(id)
                 .map(FranquiciaMapper::aDominio);
     }
+
+    @Override
+    public Flux<Franquicia> buscarTodos() {
+        return mongo.findAll().map(FranquiciaMapper::aDominio);
+    }
+
 }
