@@ -55,7 +55,6 @@ public class Franquicia {
                 .orElseThrow(() -> new RecursoNoEncontradoException("Sucursal no encontrada: " + sucursalId));
     }
 
-    // Reemplaza una sucursal ya modificada (por ejemplo, despues de agregarle un producto)
     public Franquicia actualizarSucursal(Sucursal actualizada) {
         buscarSucursal(actualizada.getId());
         List<Sucursal> nuevas = sucursales.stream()

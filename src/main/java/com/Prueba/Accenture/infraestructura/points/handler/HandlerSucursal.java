@@ -40,8 +40,10 @@ public class HandlerSucursal {
 
     public Mono<ServerResponse> listar(ServerRequest request) {
         String franquiciaId = request.pathVariable("franquiciaId");
-        return ServerResponse.ok()
-                .body(sucursalUseCase.listar(franquiciaId).map(FranquiciaResponse.SucursalResponse::de), FranquiciaResponse.SucursalResponse.class);
+        return sucursalUseCase.listar(franquiciaId)
+                .map(FranquiciaResponse.SucursalResponse::de)
+                .collectList()
+                .flatMap(lista -> ServerResponse.ok().bodyValue(lista));
     }
 
 }

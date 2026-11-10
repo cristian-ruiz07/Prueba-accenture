@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-// Subdocumento: se guarda dentro de FranquiciaDocument, no tiene coleccion propia
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
