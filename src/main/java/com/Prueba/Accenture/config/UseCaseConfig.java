@@ -1,6 +1,7 @@
 package com.Prueba.Accenture.config;
 
 import com.Prueba.Accenture.domain.interfaces.FranquiciaRepositorio;
+import com.Prueba.Accenture.domain.usecase.ActualizarNombreFranquicia;
 import com.Prueba.Accenture.domain.usecase.CrearFranquicia;
 import com.Prueba.Accenture.domain.usecase.ObtenerFranquicia;
 import org.springframework.context.annotation.Bean;
@@ -17,5 +18,10 @@ public class UseCaseConfig {
     @Bean
     public ObtenerFranquicia obtenerFranquicia(FranquiciaRepositorio repositorio) {
         return new ObtenerFranquicia(repositorio);
+    }
+
+    @Bean
+    public ActualizarNombreFranquicia actualizarNombreFranquicia(FranquiciaRepositorio repositorio) {
+        return new ActualizarNombreFranquicia(repositorio);
     }
 }

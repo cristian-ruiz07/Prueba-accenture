@@ -13,6 +13,7 @@ import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
@@ -34,10 +35,11 @@ class CrearFranquiciaTest {
         when(repositorio.guardar(any(Franquicia.class)))
                 .thenAnswer(inv -> Mono.just(inv.getArgument(0)));
 
-        StepVerifier.create(useCase.ejecutar("Frisby"))
+        StepVerifier.create(useCase.ejecutar("Frisby", "Pollo apanado"))
                 .assertNext(f -> {
                     assertNotNull(f.getId());
                     assertEquals("Frisby", f.getNombre());
+                    assertEquals("Pollo apanado", f.getDescripcion());
                     assertTrue(f.getSucursales().isEmpty());
                 })
                 .verifyComplete();
@@ -45,7 +47,26 @@ class CrearFranquiciaTest {
 
     @Test
     void debeFallarSiElNombreEstaVacio() {
-        StepVerifier.create(useCase.ejecutar("   "))
+        StepVerifier.create(useCase.ejecutar("   ", null))
+                .expectError(FranquiciaException.class)
+                .verify();
+
+        verify(repositorio, never()).guardar(any());
+    }
+
+    @Test
+    void debeGuardarDescripcionVaciaComoNull() {
+        when(repositorio.guardar(any(Franquicia.class)))
+                .thenAnswer(inv -> Mono.just(inv.getArgument(0)));
+
+        StepVerifier.create(useCase.ejecutar("Frisby", "   "))
+                .assertNext(f -> assertNull(f.getDescripcion()))
+                .verifyComplete();
+    }
+
+    @Test
+    void debeFallarSiLaDescripcionEsDemasiadoLarga() {
+        StepVerifier.create(useCase.ejecutar("Frisby", "a".repeat(256)))
                 .expectError(FranquiciaException.class)
                 .verify();
 

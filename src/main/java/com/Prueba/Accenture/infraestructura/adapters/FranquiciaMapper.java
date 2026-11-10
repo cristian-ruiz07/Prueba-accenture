@@ -13,12 +13,12 @@ public final class FranquiciaMapper {
 
     public static FranquiciaDocument aDocumento(Franquicia f) {
         List<SucursalDocument> sucursales = f.getSucursales().stream()
-                .map(s -> new SucursalDocument(s.getId(), s.getNombre(),
+                .map(s -> new SucursalDocument(s.getId(), s.getNombre(), s.getDescripcion(),
                         s.getProductos().stream()
-                                .map(p -> new ProductoDocument(p.getId(), p.getNombre(), p.getStock()))
+                                .map(p -> new ProductoDocument(p.getId(), p.getNombre(), p.getDescripcion(), p.getStock()))
                                 .toList()))
                 .toList();
-        return new FranquiciaDocument(f.getId(), f.getNombre(), sucursales);
+        return new FranquiciaDocument(f.getId(), f.getNombre(), f.getDescripcion(), sucursales);
     }
 
     public static Franquicia aDominio(FranquiciaDocument d) {
@@ -26,10 +26,12 @@ public final class FranquiciaMapper {
                 .map(s -> Sucursal.builder()
                         .id(s.getId())
                         .nombre(s.getNombre())
+                        .descripcion(s.getDescripcion())
                         .productos(listaSegura(s.getProductos()).stream()
                                 .map(p -> Producto.builder()
                                         .id(p.getId())
                                         .nombre(p.getNombre())
+                                        .descripcion(p.getDescripcion())
                                         .stock(p.getStock())
                                         .build())
                                 .toList())
@@ -38,6 +40,7 @@ public final class FranquiciaMapper {
         return Franquicia.builder()
                 .id(d.getId())
                 .nombre(d.getNombre())
+                .descripcion(d.getDescripcion())
                 .sucursales(sucursales)
                 .build();
     }

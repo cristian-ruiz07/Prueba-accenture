@@ -24,7 +24,7 @@ class ObtenerFranquiciaTest {
 
     @Test
     void debeRetornarLaFranquiciaSiExiste() {
-        Franquicia franquicia = Franquicia.crear("Frisby");
+        Franquicia franquicia = Franquicia.crear("Frisby", null);
         when(repositorio.buscarPorId(franquicia.getId())).thenReturn(Mono.just(franquicia));
 
         StepVerifier.create(useCase.ejecutar(franquicia.getId()))

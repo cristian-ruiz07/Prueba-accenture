@@ -17,20 +17,26 @@ public class Sucursal {
 
     private final String id;
     private final String nombre;
+    private final String descripcion;   // opcional
     @Builder.Default
     private final List<Producto> productos = List.of();
 
-    public static Sucursal crear(String nombre) {
+    public static Sucursal crear(String nombre, String descripcion) {
         validarNombre(nombre);
         return Sucursal.builder()
                 .id(UUID.randomUUID().toString())
                 .nombre(nombre.trim())
+                .descripcion(Descripcion.normalizar(descripcion))
                 .build();
     }
 
     public Sucursal actualizarNombre(String nuevoNombre) {
         validarNombre(nuevoNombre);
         return toBuilder().nombre(nuevoNombre.trim()).build();
+    }
+
+    public Sucursal actualizarDescripcion(String nuevaDescripcion) {
+        return toBuilder().descripcion(Descripcion.normalizar(nuevaDescripcion)).build();
     }
 
     public Sucursal agregarProducto(Producto producto) {

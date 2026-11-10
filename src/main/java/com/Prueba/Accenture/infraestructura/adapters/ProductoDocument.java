@@ -12,5 +12,6 @@ public class ProductoDocument {
 
     private String id;
     private String nombre;
+    private String descripcion;
     private int stock;
 }

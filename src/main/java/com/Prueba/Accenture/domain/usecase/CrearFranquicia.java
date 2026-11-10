@@ -10,8 +10,8 @@ public class CrearFranquicia {
 
     private final FranquiciaRepositorio repositorio;
 
-    public Mono<Franquicia> ejecutar(String nombre) {
-        return Mono.fromCallable(() -> Franquicia.crear(nombre))
+    public Mono<Franquicia> ejecutar(String nombre, String descripcion) {
+        return Mono.fromCallable(() -> Franquicia.crear(nombre, descripcion))
                 .flatMap(repositorio::guardar);
     }
 }

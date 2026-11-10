@@ -15,20 +15,26 @@ public class Franquicia {
 
     private final String id;
     private final String nombre;
+    private final String descripcion;   // opcional
     @Builder.Default
     private final List<Sucursal> sucursales = List.of();
 
-    public static Franquicia crear(String nombre) {
+    public static Franquicia crear(String nombre, String descripcion) {
         validarNombre(nombre);
         return Franquicia.builder()
                 .id(UUID.randomUUID().toString())
                 .nombre(nombre.trim())
+                .descripcion(Descripcion.normalizar(descripcion))
                 .build();
     }
 
     public Franquicia actualizarNombre(String nuevoNombre) {
         validarNombre(nuevoNombre);
         return toBuilder().nombre(nuevoNombre.trim()).build();
+    }
+
+    public Franquicia actualizarDescripcion(String nuevaDescripcion) {
+        return toBuilder().descripcion(Descripcion.normalizar(nuevaDescripcion)).build();
     }
 
     public Franquicia agregarSucursal(Sucursal sucursal) {

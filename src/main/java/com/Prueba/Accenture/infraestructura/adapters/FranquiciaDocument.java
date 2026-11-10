@@ -18,5 +18,6 @@ public class FranquiciaDocument {
     @Id
     private String id;
     private String nombre;
+    private String descripcion;
     private List<SucursalDocument> sucursales = new ArrayList<>();
 }

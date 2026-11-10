@@ -1,4 +1,4 @@
 package com.Prueba.Accenture.infraestructura.points.dto;
 
-public record CrearFranquiciaRequest(String nombre) {
+public record CrearFranquiciaRequest(String nombre, String descripcion) {
 }
