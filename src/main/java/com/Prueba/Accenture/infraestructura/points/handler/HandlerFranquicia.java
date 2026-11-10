@@ -1,4 +1,4 @@
-package com.Prueba.Accenture.infraestructura.points;
+package com.Prueba.Accenture.infraestructura.points.handler;
 
 import com.Prueba.Accenture.domain.exception.FranquiciaException;
 import com.Prueba.Accenture.domain.usecase.FranquiciaUseCase;
