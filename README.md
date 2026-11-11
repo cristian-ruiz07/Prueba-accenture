@@ -1,2 +1,0 @@
-# Prueba-accenture
-prueba técnica
