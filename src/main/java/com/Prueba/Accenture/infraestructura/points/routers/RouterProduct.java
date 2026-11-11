@@ -1,4 +1,4 @@
-package com.Prueba.Accenture.infraestructura.points.Routers;
+package com.Prueba.Accenture.infraestructura.points.routers;
 
 import com.Prueba.Accenture.infraestructura.points.ManejoErrores;
 import com.Prueba.Accenture.infraestructura.points.handler.HandlerProduct;
