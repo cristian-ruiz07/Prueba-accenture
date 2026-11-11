@@ -35,3 +35,9 @@ build/
 
 ### Temporal ###
 _pendiente_producto/
+
+### Terraform ###
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/terraform.tfvars

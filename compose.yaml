@@ -19,8 +19,8 @@ services:
     container_name: franquicias-api
     profiles: [ "app" ]
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/franquicias
-      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/franquicias
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongodb:27017/franquicias}
+      - SPRING_DATA_MONGODB_URI=${MONGODB_URI:-mongodb://mongodb:27017/franquicias}
     ports:
       - "8080:8080"
     depends_on:

@@ -1,0 +1,6 @@
+# Copia este archivo como terraform.tfvars y llena tus valores reales.
+# terraform.tfvars NO se sube al repositorio (esta en .gitignore).
+client_id     = "tu-client-id"
+client_secret = "tu-client-secret"
+org_id        = "tu-org-id"
+db_password   = "ContrasenaSoloLetrasYNumeros123"
